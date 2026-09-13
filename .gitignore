@@ -315,3 +315,4 @@ MANIFEST
 Pipfile.lock
 pyproject.toml
 uv.lock
+docs/
