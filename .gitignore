@@ -323,3 +323,4 @@ MLFLOW_TRACKING_URI/
 
 # Keep directory placeholders
 !.gitkeep
+models/*.pkl
