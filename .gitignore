@@ -315,7 +315,6 @@ MLFLOW_TRACKING_URI
 MLFLOW_TRACKING_URI/
 
 /data/*
-
 # Keep DVC data directories
 !/data/raw/
 !/data/interim/
