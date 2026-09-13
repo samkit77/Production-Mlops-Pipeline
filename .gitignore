@@ -302,7 +302,6 @@ dist/
 
 LICENSE
 Makefile
-setup.py
 test_environment.py
 tox.ini
 MANIFEST
