@@ -1,57 +1,203 @@
-Capstone Project
-==============================
+# Production-MLops-Pipeline
 
-A short description of the project.
+An end-to-end **sentiment analysis** project built with **Flask, MLflow, Docker, AWS, EKS, and GitHub Actions**. The project covers the complete machine learning lifecycle: data ingestion, preprocessing, feature engineering, model training, evaluation, model registry, API serving, CI/CD, containerization, and deployment.
 
-Project Organization
-------------
+---
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+## Project Highlights
+
+- **Text classification** for positive/negative sentiment
+- **MLflow** for experiment tracking and model registry
+- **Flask web app** for live predictions
+- **GitHub Actions CI/CD** for automated testing, build, and deployment
+- **AWS S3** for cloud storage
+- **AWS ECR + EKS** for Docker image storage and Kubernetes deployment
+
+---
+
+## Tech Stack
+
+**ML / NLP:** scikit-learn, NLTK, NumPy, Pandas  
+**Experiment Tracking:** MLflow  
+**Web App:** Flask  
+**Containerization:** Docker  
+**Cloud / DevOps:** AWS S3, ECR, EKS, GitHub Actions  
+
+---
+
+## Repository Structure
+``` text.
+├── .github/workflows/ci.yaml
+├── params.yaml
+├── requirements.txt
+├── Dockerfile
+├── flask_app/
+│ ├── app.py
+│ └── templates/
+│ └── index.html
+├── src/
+│ ├── logger.py
+│ ├── connections/
+│ │ └── s3_connection.py
+│ ├── data/
+│ │ ├── data_ingestion.py
+│ │ └── data_preprocessing.py
+│ ├── features/
+│ │ └── feature_engineering.py
+│ └── model/
+│ ├── model_building.py
+│ ├── model_evaluation.py
+│ └── register_model.py
+├── tests/
+├── scripts/
+├── models/
+├── data/
+├── reports/
+└── logs/
+```
+
+---
+
+# Workflow Overview
+
+## 1. Data Ingestion
+
+- Load dataset from CSV or S3
+- Filter relevant sentiment labels
+- Split into train and test sets
+
+---
+
+## 2. Data Preprocessing
+
+- Lowercasing
+- URL removal
+- Number removal
+- Punctuation removal
+- Stop word removal
+- Lemmatization
+
+---
+
+## 3. Feature Engineering
+
+- Convert text into **Bag of Words** features using `CountVectorizer`
+- Save fitted vectorizer for inference
+
+---
+
+## 4. Model Training
+
+- Train **Logistic Regression** on processed features
+- Save trained model as `model.pkl`
+
+---
+
+## 5. Model Evaluation
+
+Evaluate model performance using:
+
+- Accuracy
+- Precision
+- Recall
+
+Save evaluation metrics and experiment information.
+
+---
 
 
---------
+## 6. Flask Inference App
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+- Accept user text input
+- Apply the same preprocessing pipeline
+- Transform text using the saved vectorizer
+- Generate sentiment predictions using the registered model
+
+---
+
+## 7. CI/CD Workflow
+
+The GitHub Actions pipeline performs:
+
+- Code checkout
+- Python environment setup
+- Dependency installation
+- Unit testing
+- Model validation
+- Flask application testing
+- Docker image build
+- AWS ECR authentication
+- Push Docker image to AWS ECR
+- Deploy application to AWS EKS
+
+---
+
+# Deployment Architecture
+
+The application deployment flow:
+
+
+Developer
+|
+|
+GitHub Repository
+|
+|
+GitHub Actions CI/CD
+|
+|
+Docker Build
+|
+|
+AWS ECR
+|
+|
+AWS EKS Kubernetes Cluster
+|
+|
+Flask ML Application
+
+
+---
+
+# Model Lifecycle
+
+
+Data
+|
+|
+Preprocessing
+|
+|
+Feature Engineering
+|
+|
+Model Training
+|
+|
+Evaluation
+|
+|
+MLflow Tracking
+|
+|
+Model Registry
+|
+|
+Production Deployment
+|
+|
+Flask API Prediction
+
+
+---
+
+# Key Features
+
+- End-to-end ML pipeline
+- Experiment tracking with MLflow
+- Model versioning and registry
+- Automated CI/CD pipeline
+- Docker-based deployment
+- Kubernetes-based production deployment
+- AWS cloud integration
