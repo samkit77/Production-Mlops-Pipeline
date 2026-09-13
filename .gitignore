@@ -277,7 +277,6 @@ ENV/
 .env
 .env.*
 !.env.example
-models/ 
 # Local models and datasets
 # Type checking and linting caches
 .mypy_cache/
@@ -314,4 +313,14 @@ logs/
 
 MLFLOW_TRACKING_URI
 MLFLOW_TRACKING_URI/
-/data
+
+/data/*
+
+# Keep DVC data directories
+!/data/raw/
+!/data/interim/
+!/data/processed/
+!/data/external/
+
+# Keep directory placeholders
+!.gitkeep
