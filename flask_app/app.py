@@ -12,9 +12,6 @@ import re
 import dagshub
 import numpy as np
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 
@@ -76,8 +73,7 @@ def normalize_text(text):
 
 # # Below code block is for local use
 # # -------------------------------------------------------------------------------------
-# mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
-# dagshub.init(repo_owner=REPO_OWNER, repo_name=REPO_NAME, mlflow=True)
+
 # # -------------------------------------------------------------------------------------
 
 # Below code block is for production use
@@ -124,7 +120,7 @@ PREDICTION_COUNT = Counter(
 model_name = "my_model"
 def get_latest_model_version(model_name):
     client = mlflow.MlflowClient()
-    latest_version = client.get_latest_versions(model_name, stages=["staging"])
+    latest_version = client.get_latest_versions(model_name, stages=["Production"])
     if not latest_version:
         latest_version = client.get_latest_versions(model_name, stages=["None"])
     return latest_version[0].version if latest_version else None
