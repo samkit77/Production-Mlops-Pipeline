@@ -314,4 +314,4 @@ logs/
 
 MLFLOW_TRACKING_URI
 MLFLOW_TRACKING_URI/
-data/
+/data
