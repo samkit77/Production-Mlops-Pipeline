@@ -9,6 +9,10 @@ import mlflow.sklearn
 import dagshub
 import os
 from src.logger import logging
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # Below code block is for production use
@@ -22,8 +26,8 @@ os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
 os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
 dagshub_url = "https://dagshub.com"
-repo_owner = "vikashdas770"
-repo_name = "YT-Capstone-Project"
+repo_owner = "samkit77890"
+repo_name = "Production-Mlops-Pipeline"
 
 # Set up MLflow tracking URI
 mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
@@ -31,8 +35,8 @@ mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 
 # Below code block is for local use
 # -------------------------------------------------------------------------------------
-# mlflow.set_tracking_uri('https://dagshub.com/vikashdas770/YT-Capstone-Project.mlflow')
-# dagshub.init(repo_owner='vikashdas770', repo_name='YT-Capstone-Project', mlflow=True)
+# mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+# dagshub.init(repo_owner=REPO_OWNER, repo_name=REPO_NAME, mlflow=True)
 # -------------------------------------------------------------------------------------
 
 

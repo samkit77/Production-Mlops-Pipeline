@@ -58,7 +58,6 @@ target/
 
 # DotEnv configuration
 .env
-models/
 # Database
 *.db
 *.rdb
@@ -71,12 +70,11 @@ models/
 
 # Spyder
 .spyproject/
-data/
+
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
 
-# exclude data from source control by default
-/data/
+
 
 # Mac OS-specific storage files
 .DS_Store
@@ -261,8 +259,6 @@ cython_debug/
 cred.txt
 local_s3/
 
-models/
-data/
 src.egg-info
 src.egg-info/
 .gitkeep
@@ -281,10 +277,8 @@ ENV/
 .env
 .env.*
 !.env.example
-
+models/ 
 # Local models and datasets
-models/
-data/
 # Type checking and linting caches
 .mypy_cache/
 .pyre/
@@ -316,3 +310,9 @@ Pipfile.lock
 pyproject.toml
 uv.lock
 docs/
+.dvc/
+logs/
+
+MLFLOW_TRACKING_URI
+MLFLOW_TRACKING_URI/
+data/
